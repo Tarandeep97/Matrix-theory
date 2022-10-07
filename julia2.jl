@@ -7,7 +7,7 @@ Addition_Mat = [0 1 2 3; 1 0 3 2; 2 3 0 1; 3 2 1 0]
 Identity_Mat = [0 0 0 0; 1 1 3 2; 2 2 1 3; 3 3 2 1]
 Mul_Mat = [0 0 0 0; 0 1 2 3; 0 2 3 1; 0 3 1 2]
 
-s_idx = 7
+s_idx = 1
 
 m = Samples[s_idx].m
 n = Samples[s_idx].n
@@ -53,25 +53,34 @@ end
 Aug_Ab 
 #Echelon form
 U = Aug_Ab[:,1:n] 
-U
+
 
 #Find rank
 l=1
 i=1
 rank_A=0
-while (i<=fwd_steps)
-    max_val, max_idx = findmax(Aug_Ab[i:m, l])
-    if (max_val==0)
+while (i<=fwd_steps && l<=n)
+    if (Aug_Ab[i,l]!=0)
+        global rank_A+=1
+        global i+=1
         global l+=1
-        continue
+    else
+        global l+=1
     end
 end
 
 
+if (Aug_Ab[i,l]!=0)
+    rank_Ab = rank_A + 1
+else
+    rank_Ab = rank_A
+end
 
 #Check consistency
-if (rank==m)
+if (rank_A==rank_Ab)
     print("Consistent")
-elseif(rank<m)
+else
+    print("Inconsistent")
+end
 
 
