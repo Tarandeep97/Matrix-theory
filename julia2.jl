@@ -1,3 +1,5 @@
+using JLD2
+@load "Samples_Prog_1.jld2"
 
 #Helper Matrix for Addition,Find Multiple to make zero, Multiplication
 
@@ -5,12 +7,13 @@ Addition_Mat = [0 1 2 3; 1 0 3 2; 2 3 0 1; 3 2 1 0]
 Identity_Mat = [0 0 0 0; 1 1 3 2; 2 2 1 3; 3 3 2 1]
 Mul_Mat = [0 0 0 0; 0 1 2 3; 0 2 3 1; 0 3 1 2]
 
+s_idx = 1
 
-m = rand(2:7)
-n = rand(2:7)
+m = Samples[s_idx].m
+n = Samples[s_idx].n
 
-A = rand(0:3, (m, n))
-b = rand(0:3, (m, 1))
+A = Samples[s_idx].A
+b = Samples[s_idx].b
 
 Aug_Ab = hcat(A, b)
 
