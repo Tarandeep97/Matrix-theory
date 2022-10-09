@@ -1,6 +1,5 @@
 
-
-function rankconsistencyTeamID22(A::Vector{Int64},b::Vector{Int64})
+function rankconsistencyTeamID22(A,b)
     m,n = size(A)
 
     #Helper Matrix for Addition,Find Multiple to make zero, Multiplication
@@ -72,16 +71,3 @@ function rankconsistencyTeamID22(A::Vector{Int64},b::Vector{Int64})
     return U,rank_A,consistent
 end
 
-
-using JLD2
-@load "Samples_Prog_1.jld2"
-
-s_idx = 14
-
-m = Samples[s_idx].m
-n = Samples[s_idx].n
-
-A = Samples[s_idx].A
-b = Samples[s_idx].b
-
-print(rankconsistencyTeamID22(A,b))
