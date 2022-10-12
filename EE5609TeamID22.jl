@@ -25,18 +25,20 @@ function rankconsistencyTeamID22(A,b)
         if (max_idx!=1)
             (Aug_Ab[i, :], Aug_Ab[max_idx+i-1, :]) = (Aug_Ab[max_idx+i-1, :], Aug_Ab[i, :])
         end
-
+        Aug_Ab_T = Aug_Ab'
         for j in i+1:m
             if (Aug_Ab[j,l]!=0)
                 mul_tmp = Identity_Mat[Aug_Ab[j,l]+1, Aug_Ab[i,l]+1]
 
                 Aug_Ab[j,l]=0
+                Aug_Ab_T[l,j]=0
                 for k in l+1:n+1
-                    tmp = Addition_Mat[Aug_Ab[j, k]+1, Mul_Mat[mul_tmp+1, Aug_Ab[i, k]+1]+1]
-                    Aug_Ab[j, k] = tmp
+                    tmp = Addition_Mat[Aug_Ab_T[k,j]+1, Mul_Mat[mul_tmp+1, Aug_Ab_T[k,i]+1]+1]
+                    Aug_Ab_T[k,j] = tmp
                 end
             end
         end
+        Aug_Ab = Aug_Ab_T'
         i+=1
         l+=1
     end
