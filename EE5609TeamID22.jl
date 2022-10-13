@@ -57,12 +57,18 @@ function rankconsistencyTeamID22(A,b)
             i+=1
             l+=1
         else
-            if (Aug_Ab[i,n+1]!=0)
-                rank_Ab+=1
-            end 
             l+=1
         end
     end
+
+    if (i<=m)
+        for p in Aug_Ab[i:m,n+1]
+            if (p!=0)
+                rank_Ab+=1
+            end
+        end
+    end
+    
 
     #Check consistency
     consistent = false
