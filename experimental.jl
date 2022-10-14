@@ -88,9 +88,8 @@ using BenchmarkTools
 include("EE5609TeamID22.jl")
 m = 450 # must work for any m <= 500
 n = 450 # must work for any n <= 500
-id =10
+id = 21
 A = Samples[id].A# this is a Matrix{Int64} array with entries 0,1,2,3
 b = Samples[id].b # b::Vector{Int64}
-U,r,c = rankconsistencyTeamID22(A,b)
+@time rankconsistencyTeamID22(A,b)
 
-print(Samples[id].r,Samples[id].consistent)

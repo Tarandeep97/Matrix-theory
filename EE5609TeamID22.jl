@@ -68,6 +68,7 @@ function rankconsistencyTeamID22(A,b)
             end
         end
     end
+
     
 
     #Check consistency
