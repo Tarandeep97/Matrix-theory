@@ -11,21 +11,21 @@ function eval_the_prog()
         A = Samples[indx].A
         b = Samples[indx].b
 
-        U, r, consistent = rankconsistencyTeamID15(A,b); # call your function here
+        U, r, consistent = rankconsistencyTeamID22(A,b); # call your function here
         pass_vector[indx] = (Samples[indx].U == U) && (Samples[indx].r == r) && (Samples[indx].consistent == consistent)
         println("Sample index $indx correctness: $(pass_vector[indx])")
     end
 
-    # timetaken = @belapsed rankconsistencyTeamIDxx($Samples[25].A,$Samples[25].b) evals=1 samples=5 seconds=10
+    timetaken = @belapsed rankconsistencyTeamID22($Samples[25].A,$Samples[25].b) evals=1 samples=5 seconds=10
 
-    return pass_vector #,timetaken
+    return pass_vector,timetaken
 
 end
 
-include("Submissions/EE5609TeamID15.jl") # include your file here
-pass_vector = eval_the_prog();
+include("EE5609TeamID22.jl") # include your file here
+pass_vector,timetaken = eval_the_prog();
 println("\n------Score------")
 display(sum(pass_vector))
-# display(timetaken)
+#display(timetaken)
 println("-----------------")
 
